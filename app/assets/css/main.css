@@ -1,0 +1,168 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* ---------------------------------------------------
+   Tokens de diseño — DM Marketing
+   Concepto: panel de control de performance marketing
+   El tema (claro/oscuro) sigue el ajuste del sistema del
+   usuario a través de Nuxt Color Mode (preference: 'system'),
+   que añade/quita la clase .dark en <html>.
+--------------------------------------------------- */
+@theme static {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Azul señal — primario, CTA, datos (igual en ambos temas) */
+  --color-signal-50: #eff4ff;
+  --color-signal-100: #dce7ff;
+  --color-signal-200: #bcd2ff;
+  --color-signal-300: #8fb4ff;
+  --color-signal-400: #5c8fff;
+  --color-signal-500: #3e7bfa;
+  --color-signal-600: #2a5ee0;
+  --color-signal-700: #2249b4;
+  --color-signal-800: #1f3d8f;
+  --color-signal-900: #1e3572;
+  --color-signal-950: #131f45;
+
+  /* Ámbar — acento cálido / urgencia */
+  --color-amber-50: #fef8ec;
+  --color-amber-100: #fdedc9;
+  --color-amber-200: #fbd888;
+  --color-amber-300: #f9c157;
+  --color-amber-400: #f7ae33;
+  --color-amber-500: #f5a524;
+  --color-amber-600: #d9860f;
+  --color-amber-700: #b3660c;
+  --color-amber-800: #8a4f0e;
+  --color-amber-900: #6f420f;
+  --color-amber-950: #402206;
+
+  /* Verde de crecimiento — línea de firma (igual en ambos temas) */
+  --color-growth: #1e9c73;
+
+  /* Superficies y texto — referencian variables que cambian según el tema */
+  --color-carbon: var(--surface-base);
+  --color-panel: var(--surface-1);
+  --color-panel-2: var(--surface-2);
+  --color-line: var(--surface-line);
+  --color-ink: var(--text-ink);
+}
+
+/* --- Tema claro (por defecto) --- */
+:root {
+  --surface-base: #fafbfc;
+  --surface-1: #ffffff;
+  --surface-2: #f2f4f7;
+  --surface-line: rgba(15, 23, 42, 0.09);
+
+  --text-ink: #10131a;
+  --text-ink-muted: #565f70;
+  --text-ink-dimmed: #8791a3;
+
+  --ui-bg: var(--surface-base);
+  --ui-bg-elevated: var(--surface-1);
+  --ui-bg-accented: var(--surface-2);
+  --ui-border: var(--surface-line);
+  --ui-text: var(--text-ink);
+  --ui-text-muted: var(--text-ink-muted);
+  --ui-text-dimmed: var(--text-ink-dimmed);
+  color-scheme: light;
+}
+
+/* --- Tema oscuro (media query) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-base: #0b0e14;
+    --surface-1: #12161f;
+    --surface-2: #171c27;
+    --surface-line: rgba(231, 234, 240, 0.09);
+
+    --text-ink: #e7eaf0;
+    --text-ink-muted: #8b93a7;
+    --text-ink-dimmed: #616b80;
+
+    --ui-bg: var(--surface-base);
+    --ui-bg-elevated: var(--surface-1);
+    --ui-bg-accented: var(--surface-2);
+    --ui-border: var(--surface-line);
+    --ui-text: var(--text-ink);
+    --ui-text-muted: var(--text-ink-muted);
+    --ui-text-dimmed: var(--text-ink-dimmed);
+    color-scheme: dark;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-carbon);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* --- Elemento de firma: línea de crecimiento --- */
+.growth-divider {
+  width: 100%;
+  height: 56px;
+  display: block;
+}
+
+.growth-line {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw-line 1.8s ease-out forwards;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .growth-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Eyebrow / etiqueta técnica reutilizable */
+.eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-signal-600);
+}
+
+@media (prefers-color-scheme: dark) {
+  .eyebrow {
+    color: var(--color-signal-400);
+  }
+}
+
+/* grid de fondo sutil tipo "panel de datos" */
+.grid-backdrop {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
