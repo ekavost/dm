@@ -31,11 +31,9 @@ jobs:
         run: npm ci
 
       - name: Generate static site
-        # Base path = /<nombre-del-repo>/, salvo que el repo sea
-        # <usuario>.github.io (dominio raíz), donde debe ser '/'.
         run: npm run generate
         env:
-          NUXT_APP_BASE_URL: ${{ github.event.repository.name == format('{0}.github.io', github.repository_owner) && '/' || format('/{0}/', github.event.repository.name) }}
+          NUXT_APP_BASE_URL: /dm/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

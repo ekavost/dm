@@ -20,30 +20,31 @@ workflow de GitHub Actions (`.github/workflows/deploy.yml`) que hace el
 build y el deploy automáticamente en cada `push` a `main`.
 
 1. **Crea el repositorio en GitHub** y sube el proyecto:
+
    ```bash
    git init
    git add .
    git commit -m "Rediseño DM Marketing — Nuxt 4 + Nuxt UI"
    git branch -M main
-   git remote add origin https://github.com/<usuario>/<repo>.git
+   git remote add origin https://github.com/ekavost/dm.git
    git push -u origin main
    ```
 
 2. **Activa Pages con GitHub Actions como origen:**
-   en el repo → *Settings* → *Pages* → en "Build and deployment" →
-   *Source*: **GitHub Actions**. (No hace falta elegir rama ni carpeta,
+   en el repo → _Settings_ → _Pages_ → en "Build and deployment" →
+   _Source_: **GitHub Actions**. (No hace falta elegir rama ni carpeta,
    el workflow se encarga.)
 
 3. **Haz push a `main`** (o dispáralo manualmente desde la pestaña
-   *Actions* → "Deploy to GitHub Pages" → *Run workflow*). El workflow:
+   _Actions_ → "Deploy to GitHub Pages" → _Run workflow_). El workflow:
    - instala dependencias,
    - genera el sitio estático con `npm run generate`,
    - ajusta automáticamente la base URL a `/<repo>/` (o `/` si el repo
      se llama `<usuario>.github.io`),
    - publica el contenido de `.output/public`.
 
-4. Cuando el job termine (pestaña *Actions*), tu sitio queda en
-   `https://<usuario>.github.io/<repo>/`.
+4. Cuando el job termine (pestaña _Actions_), tu sitio queda en
+   `https://ekavost.github.io/dm/`.
 
 **Dominio propio:** si vas a usar un dominio custom (ej. `dm-marketing.kz`),
 añade un archivo `public/CNAME` con ese dominio y en `deploy.yml` fija
@@ -51,6 +52,7 @@ añade un archivo `public/CNAME` con ese dominio y en `deploy.yml` fija
 dominio propio el sitio vive en la raíz.
 
 **Generar y previsualizar en local** (sin GitHub):
+
 ```bash
 npm run generate
 npx serve .output/public
@@ -92,13 +94,13 @@ componente `<UColorModeSwitch />` listo para usar.
 un fondo grafito-azulado con una "línea de crecimiento" como elemento de
 firma (hero, KPIs, divisores entre secciones).
 
-| Token | Valor | Uso |
-|---|---|---|
-| `carbon` | `#0B0E14` | Fondo base |
-| `panel` / `panel-2` | `#12161F` / `#171C27` | Tarjetas, superficies |
-| `signal-500` | `#3E7BFA` | Primario / CTA / enlaces |
-| `amber-500` | `#F5A524` | Acento cálido (CTA secundario) |
-| `growth` | `#34D399` | Línea de crecimiento, éxito |
+| Token               | Valor                 | Uso                            |
+| ------------------- | --------------------- | ------------------------------ |
+| `carbon`            | `#0B0E14`             | Fondo base                     |
+| `panel` / `panel-2` | `#12161F` / `#171C27` | Tarjetas, superficies          |
+| `signal-500`        | `#3E7BFA`             | Primario / CTA / enlaces       |
+| `amber-500`         | `#F5A524`             | Acento cálido (CTA secundario) |
+| `growth`            | `#34D399`             | Línea de crecimiento, éxito    |
 
 **Tipografía:** `Space Grotesk` (titulares) · `Inter` (cuerpo) ·
 `JetBrains Mono` (KPIs, teléfonos, etiquetas eyebrow).
