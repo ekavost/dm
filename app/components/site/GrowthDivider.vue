@@ -7,9 +7,21 @@
   >
     <defs>
       <linearGradient :id="gradientId" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="var(--color-signal-500)" stop-opacity="0" />
-        <stop offset="15%" stop-color="var(--color-signal-500)" stop-opacity="0.8" />
-        <stop offset="60%" stop-color="var(--color-growth)" stop-opacity="0.9" />
+        <stop
+          offset="0%"
+          stop-color="var(--color-signal-500)"
+          stop-opacity="0"
+        />
+        <stop
+          offset="15%"
+          stop-color="var(--color-signal-500)"
+          stop-opacity="0.8"
+        />
+        <stop
+          offset="60%"
+          stop-color="var(--color-growth)"
+          stop-opacity="0.9"
+        />
         <stop offset="100%" stop-color="var(--color-growth)" stop-opacity="0" />
       </linearGradient>
     </defs>
@@ -26,5 +38,5 @@
 </template>
 
 <script setup lang="ts">
-const gradientId = `growth-gradient-${Math.random().toString(36).slice(2, 9)}`
+const gradientId = useId();
 </script>
